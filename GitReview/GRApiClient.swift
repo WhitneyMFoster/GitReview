@@ -18,6 +18,9 @@ class GRApiClient {
     
     private enum Endpoint: String {
         case diff = "%@/%@/pull/%d.diff" //org, repo, prNumber
+        case repository = "repos/%@/%@" //org, repo
+        case pullRequests = "repos/%@/%@/pulls" //org, repo
+        case pullRequest = "repos/%@/%@/pulls/%d" //org, repo, prNumber
     }
     
     private struct EndpointString {
@@ -44,45 +47,95 @@ class GRApiClient {
         self.sessionManager = Alamofire.SessionManager(configuration: sessionConfiguration)
     }
     
-    private func makeApiCall(method: HTTPMethod, endpoint: EndpointString, parameters: [String: Any]?, encoding: ParameterEncoding = JSONEncoding.default, success: @escaping (JSON) -> Void, failure: @escaping (String) -> Void) {
+    private func makeApiCall(method: HTTPMethod, endpoint: EndpointString, parameters: [String: Any]?, encoding: ParameterEncoding = JSONEncoding.default, success: @escaping (JSON) -> Void, failure: @escaping (NSError) -> Void) {
         self.sessionManager.request("\(baseURL)\(endpoint.value)", method: method, parameters: parameters, encoding: encoding, headers: nil).responseJSON { (response) in
             if response.result.isFailure || response.result.error != nil {
                 let errorMessage = response.result.error?.localizedDescription ?? response.error?.localizedDescription ?? response.result.error?.localizedDescription ?? "Something went wrong"
-                failure(errorMessage)
+                failure(NSError.create(message: errorMessage))
             }
             else if let value = response.result.value {
                 let json = JSON(value)
                 success(json)
             }
             else {
-                failure("Nothing was returned")
+                failure(NSError.create(message: "Nothing was returned"))
             }
         }
     }
     
-    private func makeCall(method: HTTPMethod, endpoint: EndpointString, parameters: [String: Any]?, encoding: ParameterEncoding = JSONEncoding.default, success: @escaping (String) -> Void, failure: @escaping (String) -> Void) {
+    private func makeCall(method: HTTPMethod, endpoint: EndpointString, parameters: [String: Any]?, encoding: ParameterEncoding = JSONEncoding.default, success: @escaping (String) -> Void, failure: @escaping (NSError) -> Void) {
         self.sessionManager.request("\(diffURL)\(endpoint.value)", method: method, parameters: parameters, encoding: encoding, headers: nil).responseString { (response) in
             if response.result.isFailure || response.result.error != nil {
                 let errorMessage = response.result.error?.localizedDescription ?? response.error?.localizedDescription ?? response.result.error?.localizedDescription ?? "Something went wrong"
-                failure(errorMessage)
+                failure(NSError.create(message: errorMessage))
             }
             else if let value = response.result.value {
                 success(value)
             }
             else {
-                failure("Nothing was returned")
+                failure(NSError.create(message: "Nothing was returned"))
             }
         }
     }
     
-    func getDiff() {
-        self.makeCall(method: .get, endpoint: GRApiClient.EndpointString(endPoint: .diff, arg: ["magicalpanda", "MagicalRecord", 1305]), parameters: nil, success: { (result) in
-            NSLog(result)
-            let parsed = GRDiffParser(fileContents: result)
-            print()
+    func getRepository(organization: String, repoName: String, completion: @escaping (NSError?) -> Void) {
+        self.makeApiCall(
+            method: .get,
+            endpoint: GRApiClient.EndpointString(endPoint: .repository, arg: [organization, repoName]),
+            parameters: nil,
+            success: { (json) in
+                do {
+                    GRRepositoryManager.shared.repository = try GRRepository(json: json)
+                    completion(nil)
+                }
+                catch let e as NSError {
+                    completion(e)
+                }
+                
         }) { (errorMessage) in
-            NSLog(errorMessage)
+            completion(errorMessage)
         }
     }
-
+    
+    func getPullRequests(forRepository repository: GRRepository, completion: @escaping (NSError?) -> Void) {
+        self.makeApiCall(
+            method: .get,
+            endpoint: GRApiClient.EndpointString(endPoint: .pullRequests, arg: [repository.owner.userName, repository.name]),
+            parameters: nil,
+            success: { (json) in
+                var pullRequests = [GRPullRequest]()
+                json.arrayValue.forEach({ (pr) in
+                    do {
+                        pullRequests.append(try GRPullRequest(json: pr))
+                    }
+                    catch {
+                        // just ignore failing pr's
+                    }
+                })
+                GRRepositoryManager.shared.repository?.pullRequests = pullRequests
+                completion(nil)
+        }) { (error) in
+            completion(error)
+        }
+    }
+    
+    func getDiff(forPullRequest pr: Int, repository: GRRepository, completion: @escaping (NSError?) -> Void) {
+        self.makeCall(
+            method: .get,
+            endpoint: GRApiClient.EndpointString(endPoint: .diff, arg: [repository.owner.userName, repository.name, pr]),
+            parameters: nil,
+            success: { (result) in
+                do {
+                    GRRepositoryManager.shared.repository?.setDiffFiles(files: try parseDiff(fileContents: result), forPullRequest: pr)
+                    
+                    completion(nil)
+                }
+                catch let e as NSError {
+                    completion(e)
+                }
+        }) { (errorMessage) in
+            completion(errorMessage)
+        }
+    }
+    
 }

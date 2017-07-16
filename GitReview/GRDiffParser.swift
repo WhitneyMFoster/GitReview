@@ -8,12 +8,14 @@
 
 import Foundation
 
-struct GRDiffParser {
-    var files: [GRDiffFile] = []
-    
-    init(fileContents diff: String) {
-        files = diff.components(separatedBy: "diff").filter({ $0.isEmpty == false }).map({ GRDiffFile($0) })
+func parseDiff(fileContents diff: String) throws -> [GRDiffFile] {
+    let files = diff.components(separatedBy: "diff").filter({ $0.isEmpty == false }).map({ GRDiffFile($0) })
+    guard
+        files.isEmpty == false
+    else {
+        throw NSError.create(message: "Diff could not be parsed")
     }
+    return files
 }
 
 struct GRDiffFile {
@@ -85,10 +87,3 @@ struct GRFileChangeBlock {
     let lineNumber: (start: (Int?, Int?), totalLines: (Int?, Int?))
     let text: ([String], [String])
 }
-/*
- diff --git a/CHANGELOG.md b/CHANGELOG.md
- index fc27b82d..82b2a557 100644
- --- a/CHANGELOG.md
- +++ b/CHANGELOG.md
- @@ -46,7 +46,7 @@
- */

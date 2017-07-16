@@ -10,8 +10,12 @@
 		8175DF0E1F17F97500A0358B /* GRRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF0D1F17F97500A0358B /* GRRepository.swift */; };
 		8175DF141F1971A700A0358B /* GRApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF131F1971A700A0358B /* GRApiClient.swift */; };
 		8175DF161F19B74600A0358B /* GRDiffParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF151F19B74600A0358B /* GRDiffParser.swift */; };
+		8175DF3E1F1BFA0F00A0358B /* GRPullRequestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF3D1F1BFA0F00A0358B /* GRPullRequestListViewController.swift */; };
+		8175DF401F1BFA6400A0358B /* GRTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF3F1F1BFA6400A0358B /* GRTableViewManager.swift */; };
+		8175DF421F1BFAC700A0358B /* GRTableViewSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF411F1BFAC700A0358B /* GRTableViewSettings.swift */; };
+		8175DF441F1C022100A0358B /* GRPullRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF431F1C022100A0358B /* GRPullRequestCell.swift */; };
+		8175DF461F1C060B00A0358B /* GRExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF451F1C060B00A0358B /* GRExtensions.swift */; };
 		81FDC47E1F173074003DD9B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FDC47D1F173074003DD9B6 /* AppDelegate.swift */; };
-		81FDC4801F173074003DD9B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FDC47F1F173074003DD9B6 /* ViewController.swift */; };
 		81FDC4831F173074003DD9B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FDC4811F173074003DD9B6 /* Main.storyboard */; };
 		81FDC4851F173074003DD9B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FDC4841F173074003DD9B6 /* Assets.xcassets */; };
 		81FDC4881F173074003DD9B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FDC4861F173074003DD9B6 /* LaunchScreen.storyboard */; };
@@ -24,9 +28,13 @@
 		8175DF0D1F17F97500A0358B /* GRRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRRepository.swift; sourceTree = "<group>"; };
 		8175DF131F1971A700A0358B /* GRApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRApiClient.swift; sourceTree = "<group>"; };
 		8175DF151F19B74600A0358B /* GRDiffParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRDiffParser.swift; sourceTree = "<group>"; };
+		8175DF3D1F1BFA0F00A0358B /* GRPullRequestListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPullRequestListViewController.swift; sourceTree = "<group>"; };
+		8175DF3F1F1BFA6400A0358B /* GRTableViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRTableViewManager.swift; sourceTree = "<group>"; };
+		8175DF411F1BFAC700A0358B /* GRTableViewSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRTableViewSettings.swift; sourceTree = "<group>"; };
+		8175DF431F1C022100A0358B /* GRPullRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPullRequestCell.swift; sourceTree = "<group>"; };
+		8175DF451F1C060B00A0358B /* GRExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRExtensions.swift; sourceTree = "<group>"; };
 		81FDC47A1F173074003DD9B6 /* GitReview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitReview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FDC47D1F173074003DD9B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		81FDC47F1F173074003DD9B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		81FDC4821F173074003DD9B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		81FDC4841F173074003DD9B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81FDC4871F173074003DD9B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -85,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				81FDC47D1F173074003DD9B6 /* AppDelegate.swift */,
-				81FDC47F1F173074003DD9B6 /* ViewController.swift */,
 				81FDC4811F173074003DD9B6 /* Main.storyboard */,
 				81FDC4841F173074003DD9B6 /* Assets.xcassets */,
 				81FDC4861F173074003DD9B6 /* LaunchScreen.storyboard */,
@@ -93,6 +100,11 @@
 				8175DF0D1F17F97500A0358B /* GRRepository.swift */,
 				8175DF131F1971A700A0358B /* GRApiClient.swift */,
 				8175DF151F19B74600A0358B /* GRDiffParser.swift */,
+				8175DF3D1F1BFA0F00A0358B /* GRPullRequestListViewController.swift */,
+				8175DF3F1F1BFA6400A0358B /* GRTableViewManager.swift */,
+				8175DF411F1BFAC700A0358B /* GRTableViewSettings.swift */,
+				8175DF431F1C022100A0358B /* GRPullRequestCell.swift */,
+				8175DF451F1C060B00A0358B /* GRExtensions.swift */,
 			);
 			path = GitReview;
 			sourceTree = "<group>";
@@ -222,11 +234,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81FDC4801F173074003DD9B6 /* ViewController.swift in Sources */,
 				8175DF0E1F17F97500A0358B /* GRRepository.swift in Sources */,
+				8175DF441F1C022100A0358B /* GRPullRequestCell.swift in Sources */,
 				8175DF161F19B74600A0358B /* GRDiffParser.swift in Sources */,
 				8175DF141F1971A700A0358B /* GRApiClient.swift in Sources */,
 				81FDC47E1F173074003DD9B6 /* AppDelegate.swift in Sources */,
+				8175DF421F1BFAC700A0358B /* GRTableViewSettings.swift in Sources */,
+				8175DF401F1BFA6400A0358B /* GRTableViewManager.swift in Sources */,
+				8175DF3E1F1BFA0F00A0358B /* GRPullRequestListViewController.swift in Sources */,
+				8175DF461F1C060B00A0358B /* GRExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
