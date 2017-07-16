@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8175DF0E1F17F97500A0358B /* GRRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF0D1F17F97500A0358B /* GRRepository.swift */; };
+		8175DF141F1971A700A0358B /* GRApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF131F1971A700A0358B /* GRApiClient.swift */; };
+		8175DF161F19B74600A0358B /* GRDiffParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF151F19B74600A0358B /* GRDiffParser.swift */; };
 		81FDC47E1F173074003DD9B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FDC47D1F173074003DD9B6 /* AppDelegate.swift */; };
 		81FDC4801F173074003DD9B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FDC47F1F173074003DD9B6 /* ViewController.swift */; };
 		81FDC4831F173074003DD9B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FDC4811F173074003DD9B6 /* Main.storyboard */; };
@@ -18,6 +21,9 @@
 /* Begin PBXFileReference section */
 		3E8E191CC4061886A2283254 /* Pods-GitReview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitReview.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitReview/Pods-GitReview.release.xcconfig"; sourceTree = "<group>"; };
 		632D65D7D1C719CD76A93439 /* Pods-GitReview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitReview.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitReview/Pods-GitReview.debug.xcconfig"; sourceTree = "<group>"; };
+		8175DF0D1F17F97500A0358B /* GRRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRRepository.swift; sourceTree = "<group>"; };
+		8175DF131F1971A700A0358B /* GRApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRApiClient.swift; sourceTree = "<group>"; };
+		8175DF151F19B74600A0358B /* GRDiffParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRDiffParser.swift; sourceTree = "<group>"; };
 		81FDC47A1F173074003DD9B6 /* GitReview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitReview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FDC47D1F173074003DD9B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FDC47F1F173074003DD9B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +90,9 @@
 				81FDC4841F173074003DD9B6 /* Assets.xcassets */,
 				81FDC4861F173074003DD9B6 /* LaunchScreen.storyboard */,
 				81FDC4891F173074003DD9B6 /* Info.plist */,
+				8175DF0D1F17F97500A0358B /* GRRepository.swift */,
+				8175DF131F1971A700A0358B /* GRApiClient.swift */,
+				8175DF151F19B74600A0358B /* GRDiffParser.swift */,
 			);
 			path = GitReview;
 			sourceTree = "<group>";
@@ -124,6 +133,7 @@
 					81FDC4791F173074003DD9B6 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = D4C4R5E8PA;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -213,6 +223,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				81FDC4801F173074003DD9B6 /* ViewController.swift in Sources */,
+				8175DF0E1F17F97500A0358B /* GRRepository.swift in Sources */,
+				8175DF161F19B74600A0358B /* GRDiffParser.swift in Sources */,
+				8175DF141F1971A700A0358B /* GRApiClient.swift in Sources */,
 				81FDC47E1F173074003DD9B6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,11 +352,15 @@
 			baseConfigurationReference = 632D65D7D1C719CD76A93439 /* Pods-GitReview.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = D4C4R5E8PA;
 				INFOPLIST_FILE = GitReview/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.whittyio.GitReview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -353,11 +370,14 @@
 			baseConfigurationReference = 3E8E191CC4061886A2283254 /* Pods-GitReview.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = D4C4R5E8PA;
 				INFOPLIST_FILE = GitReview/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.whittyio.GitReview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -381,6 +401,7 @@
 				81FDC48E1F173074003DD9B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
