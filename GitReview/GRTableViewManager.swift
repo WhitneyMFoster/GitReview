@@ -63,7 +63,7 @@ class GRTableViewManager: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.delegate?.cellSelected?(cell: tableView.cellForRow(at: indexPath), atIndex: indexPath)
-        tableView.deselectRow(at: indexPath, animated: false)
+//        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

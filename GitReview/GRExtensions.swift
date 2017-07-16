@@ -49,6 +49,7 @@ extension NSError {
     
     func createAlert() -> UIAlertController {
         let alert = UIAlertController(title: nil, message: self.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         return alert
     }
 }

@@ -11,6 +11,8 @@ import SwiftyJSON
 
 class GRRepositoryManager {
     static let shared = GRRepositoryManager()
+    let organizationName = "magicalpanda"
+    let repositoryName = "MagicalRecord"
     var repository: GRRepository? = nil
     
     private init() { }
@@ -39,10 +41,23 @@ class GRRepository {
         }
     }
     
+    func updatePullRequest(info: GRPullRequest) {
+        if let index = self.pullRequests.index(where: { $0.number == info.number || $0.id == info.id }) {
+            self.pullRequests[index] = info
+        }
+    }
+    
     func setDiffFiles(files: [GRDiffFile], forPullRequest number: Int) {
         if let index = self.pullRequests.index(where: { $0.number == number }) {
             self.pullRequests[index].diffFiles = files
         }
+    }
+    
+    func getPullRequest(number: Int) -> GRPullRequest? {
+        if let index = self.pullRequests.index(where: { $0.number == number }) {
+            return self.pullRequests[index]
+        }
+        return nil
     }
 }
 

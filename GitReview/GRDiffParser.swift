@@ -38,30 +38,37 @@ struct GRDiffFile {
         if diffLines.count > 0 {
             var currentLineNumber = getlineNumbers(diffLines.removeFirst())
             var changeLines: ([String], [String]) = ([], [])
+            var lineCompare: [(String, String)] = []
             for line in diffLines {
                 let currentLine = line
                 if currentLine.hasPrefix("@@") {
-                    blocks.append(GRFileChangeBlock(lineNumber: (currentLineNumber.0, currentLineNumber.1), text: changeLines))
+                    blocks.append(GRFileChangeBlock(lineNumber: (currentLineNumber.0, currentLineNumber.1), text: lineCompare))
                     changeLines = ([], [])
+                    lineCompare = []
                     currentLineNumber = getlineNumbers(currentLine)
                 }
                 else if changeLines.0.count == currentLineNumber.totalLines.0 && changeLines.1.count == currentLineNumber.totalLines.1 {
                     
                 }
                 else {
+                    var compare = ("", "")
                     if currentLine.hasPrefix("-") {
+                        compare.0 = currentLine
                         changeLines.0.append(currentLine)
                     }
                     else if currentLine.hasPrefix("+") {
+                        compare.1 = currentLine
                         changeLines.1.append(currentLine)
                     }
                     else {
+                        compare = (currentLine, currentLine)
                         changeLines.0.append(currentLine)
                         changeLines.1.append(currentLine)
                     }
+                    lineCompare.append(compare)
                 }
             }
-            blocks.append(GRFileChangeBlock(lineNumber: (currentLineNumber.0, currentLineNumber.1), text: changeLines))
+            blocks.append(GRFileChangeBlock(lineNumber: (currentLineNumber.0, currentLineNumber.1), text: lineCompare))
         }
     }
     
@@ -71,12 +78,33 @@ struct GRDiffFile {
         while lineNumbers.count < 4 && components.isEmpty == false {
             lineNumbers.append(components.removeFirst())
         }
-        var lines = lineNumbers.map({ NSString(string: $0).substring(from: 1) }).joined(separator: ",").components(separatedBy: ",").filter({ $0 != "@" })
         var result: (start: (Int?, Int?), totalLines: (Int?, Int?), remainder: String?) = ((nil, nil), (nil, nil), components.joined(separator: " "))
-        result.start.0 = Int(lines.removeFirst())
-        result.totalLines.0 = Int(lines.removeFirst())
-        result.start.1 = Int(lines.removeFirst())
-        result.totalLines.1 = Int(lines.removeFirst())
+        let lines = lineNumbers.filter({ $0.hasPrefix("@@") == false })
+        for i in 0 ..< lines.count {
+            var split = lines[i].components(separatedBy: ",")
+            while split.count > 0 {
+                if let first = split.first {
+                    let _ = split.removeFirst()
+                    if i == 0 {
+                        if first.hasPrefix("-") {
+                            result.start.0 = Int(NSString(string: first).substring(from: 1))! * -1
+                        }
+                        else {
+                            result.totalLines.0 = Int(first)
+                        }
+                    }
+                    else {
+                        if first.hasPrefix("-") {
+                            result.start.1 = Int(NSString(string: first).substring(from: 1))! * -1
+                        }
+                        else {
+                            result.totalLines.1 = Int(first)
+                        }
+                    }
+                }
+            }
+
+        }
         
         return result
         
@@ -85,5 +113,5 @@ struct GRDiffFile {
 
 struct GRFileChangeBlock {
     let lineNumber: (start: (Int?, Int?), totalLines: (Int?, Int?))
-    let text: ([String], [String])
+    let text: [(String, String)]
 }

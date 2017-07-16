@@ -97,7 +97,17 @@ class GRApiClient {
         }
     }
     
-    func getPullRequests(forRepository repository: GRRepository, completion: @escaping (NSError?) -> Void) {
+    func getPullRequests(completion: @escaping (NSError?) -> Void) {
+        guard let repository = GRRepositoryManager.shared.repository else {
+            GRApiClient.shared.getRepository(organization: GRRepositoryManager.shared.organizationName, repoName: GRRepositoryManager.shared.repositoryName, completion: { (err) in
+                guard err == nil else {
+                    completion(err)
+                    return
+                }
+                self.getPullRequests(completion: completion)
+            })
+            return
+        }
         self.makeApiCall(
             method: .get,
             endpoint: GRApiClient.EndpointString(endPoint: .pullRequests, arg: [repository.owner.userName, repository.name]),
@@ -119,7 +129,45 @@ class GRApiClient {
         }
     }
     
-    func getDiff(forPullRequest pr: Int, repository: GRRepository, completion: @escaping (NSError?) -> Void) {
+    func getPullRequestInfo(forPullRequest pr: Int, completion: @escaping (NSError?) -> Void) {
+        guard let repository = GRRepositoryManager.shared.repository else {
+            GRApiClient.shared.getRepository(organization: GRRepositoryManager.shared.organizationName, repoName: GRRepositoryManager.shared.repositoryName, completion: { (err) in
+                guard err == nil else {
+                    completion(err)
+                    return
+                }
+                self.getPullRequestInfo(forPullRequest: pr, completion: completion)
+            })
+            return
+        }
+        self.makeApiCall(
+            method: .get,
+            endpoint: GRApiClient.EndpointString(endPoint: .pullRequest, arg: [repository.owner.userName, repository.name, pr]),
+            parameters: nil,
+            success: { (json) in
+                do {
+                    GRRepositoryManager.shared.repository?.updatePullRequest(info: try GRPullRequest(json: json))
+                    self.getDiff(forPullRequest: pr, completion: completion)
+                }
+                catch let e as NSError {
+                    completion(e)
+                }
+        }) { (error) in
+            completion(error)
+        }
+    }
+    
+    func getDiff(forPullRequest pr: Int, completion: @escaping (NSError?) -> Void) {
+        guard let repository = GRRepositoryManager.shared.repository else {
+            GRApiClient.shared.getRepository(organization: GRRepositoryManager.shared.organizationName, repoName: GRRepositoryManager.shared.repositoryName, completion: { (err) in
+                guard err == nil else {
+                    completion(err)
+                    return
+                }
+                self.getDiff(forPullRequest: pr, completion: completion)
+            })
+            return
+        }
         self.makeCall(
             method: .get,
             endpoint: GRApiClient.EndpointString(endPoint: .diff, arg: [repository.owner.userName, repository.name, pr]),

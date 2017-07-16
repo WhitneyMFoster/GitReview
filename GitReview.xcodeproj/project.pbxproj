@@ -15,6 +15,9 @@
 		8175DF421F1BFAC700A0358B /* GRTableViewSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF411F1BFAC700A0358B /* GRTableViewSettings.swift */; };
 		8175DF441F1C022100A0358B /* GRPullRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF431F1C022100A0358B /* GRPullRequestCell.swift */; };
 		8175DF461F1C060B00A0358B /* GRExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF451F1C060B00A0358B /* GRExtensions.swift */; };
+		8175DF481F1C10D500A0358B /* GRPullRequestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF471F1C10D500A0358B /* GRPullRequestDetailViewController.swift */; };
+		8175DF4A1F1C1B5200A0358B /* GRCodeBlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF491F1C1B5200A0358B /* GRCodeBlockCell.swift */; };
+		81A6DDDD1F1C2D8700B201C3 /* GRCodeLineCompareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A6DDDC1F1C2D8700B201C3 /* GRCodeLineCompareCell.xib */; };
 		81FDC47E1F173074003DD9B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FDC47D1F173074003DD9B6 /* AppDelegate.swift */; };
 		81FDC4831F173074003DD9B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FDC4811F173074003DD9B6 /* Main.storyboard */; };
 		81FDC4851F173074003DD9B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FDC4841F173074003DD9B6 /* Assets.xcassets */; };
@@ -33,6 +36,9 @@
 		8175DF411F1BFAC700A0358B /* GRTableViewSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRTableViewSettings.swift; sourceTree = "<group>"; };
 		8175DF431F1C022100A0358B /* GRPullRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPullRequestCell.swift; sourceTree = "<group>"; };
 		8175DF451F1C060B00A0358B /* GRExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRExtensions.swift; sourceTree = "<group>"; };
+		8175DF471F1C10D500A0358B /* GRPullRequestDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPullRequestDetailViewController.swift; sourceTree = "<group>"; };
+		8175DF491F1C1B5200A0358B /* GRCodeBlockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRCodeBlockCell.swift; sourceTree = "<group>"; };
+		81A6DDDC1F1C2D8700B201C3 /* GRCodeLineCompareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GRCodeLineCompareCell.xib; sourceTree = "<group>"; };
 		81FDC47A1F173074003DD9B6 /* GitReview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitReview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FDC47D1F173074003DD9B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FDC4821F173074003DD9B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,6 +111,9 @@
 				8175DF411F1BFAC700A0358B /* GRTableViewSettings.swift */,
 				8175DF431F1C022100A0358B /* GRPullRequestCell.swift */,
 				8175DF451F1C060B00A0358B /* GRExtensions.swift */,
+				8175DF471F1C10D500A0358B /* GRPullRequestDetailViewController.swift */,
+				8175DF491F1C1B5200A0358B /* GRCodeBlockCell.swift */,
+				81A6DDDC1F1C2D8700B201C3 /* GRCodeLineCompareCell.xib */,
 			);
 			path = GitReview;
 			sourceTree = "<group>";
@@ -174,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81FDC4881F173074003DD9B6 /* LaunchScreen.storyboard in Resources */,
+				81A6DDDD1F1C2D8700B201C3 /* GRCodeLineCompareCell.xib in Resources */,
 				81FDC4851F173074003DD9B6 /* Assets.xcassets in Resources */,
 				81FDC4831F173074003DD9B6 /* Main.storyboard in Resources */,
 			);
@@ -237,11 +247,13 @@
 				8175DF0E1F17F97500A0358B /* GRRepository.swift in Sources */,
 				8175DF441F1C022100A0358B /* GRPullRequestCell.swift in Sources */,
 				8175DF161F19B74600A0358B /* GRDiffParser.swift in Sources */,
+				8175DF481F1C10D500A0358B /* GRPullRequestDetailViewController.swift in Sources */,
 				8175DF141F1971A700A0358B /* GRApiClient.swift in Sources */,
 				81FDC47E1F173074003DD9B6 /* AppDelegate.swift in Sources */,
 				8175DF421F1BFAC700A0358B /* GRTableViewSettings.swift in Sources */,
 				8175DF401F1BFA6400A0358B /* GRTableViewManager.swift in Sources */,
 				8175DF3E1F1BFA0F00A0358B /* GRPullRequestListViewController.swift in Sources */,
+				8175DF4A1F1C1B5200A0358B /* GRCodeBlockCell.swift in Sources */,
 				8175DF461F1C060B00A0358B /* GRExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
