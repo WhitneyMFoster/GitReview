@@ -42,16 +42,11 @@ class GRPullRequestDetailViewController: UITableViewController {
         var sections = [Section]()
         files?.forEach {
             (file) in
-            var rows = [Row]()
-            file.blocks.forEach {
-                (block) in
-                rows.append(Row(identifier: GRCodeBlockCell.identifier, setUp: { (c) in
-                    if let cell = c as? GRCodeBlockCell {
-                        cell.setUp(block: block)
-                    }
-                }))
-            }
-            sections.append(Section(header: HeaderFooter(title: file.fileName.1!), rows: rows))
+            sections.append(Section(header: HeaderFooter(title: file.fileName.1!), rows: [Row(identifier: GRCodeBlockCell.identifier, setUp: { (c) in
+                if let cell = c as? GRCodeBlockCell {
+                    cell.setUp(diff: file)
+                }
+            })]))
         }
         
         tableManager.tableSettings = TableViewSettings(sections: sections)

@@ -75,5 +75,23 @@ extension String {
     }
 }
 
+extension NSMutableAttributedString {
+    static func lineNumber(number: Int, color: UIColor) -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: "\(number)", attributes: [
+            NSForegroundColorAttributeName: color == UIColor.white ? UIColor.darkText : UIColor.white,
+            NSBackgroundColorAttributeName: color])
+    }
+    
+    static func lineOfFile(line: String) -> (NSMutableAttributedString, UIColor) {
+        let line = line.isEmpty ? "\n" : line
+        let backgroundColor = line.hasPrefix("-") ? UIColor.red : (line.hasPrefix("+") ? UIColor.green : UIColor.white)
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.addTabStop(NSTextTab(textAlignment: .left, location: 100, options: [:]))
+        paragraph.headIndent = 100
+        return (NSMutableAttributedString(string: "\t\(line)", attributes: [
+            NSBackgroundColorAttributeName: backgroundColor.withAlphaComponent(0.6),
+            NSParagraphStyleAttributeName: paragraph]), backgroundColor)
+    }
+}
 
 

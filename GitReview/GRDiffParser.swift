@@ -40,7 +40,7 @@ struct GRDiffFile {
             var changeLines: ([String], [String]) = ([], [])
             var lineCompare: [(String, String)] = []
             for line in diffLines {
-                let currentLine = line
+                let currentLine = "\(line)\n"
                 if currentLine.hasPrefix("@@") {
                     blocks.append(GRFileChangeBlock(lineNumber: (currentLineNumber.0, currentLineNumber.1), text: lineCompare))
                     changeLines = ([], [])
@@ -87,15 +87,15 @@ struct GRDiffFile {
                     let _ = split.removeFirst()
                     if i == 0 {
                         if first.hasPrefix("-") {
-                            result.start.0 = Int(NSString(string: first).substring(from: 1))! * -1
+                            result.start.0 = Int(NSString(string: first).substring(from: 1))!
                         }
                         else {
                             result.totalLines.0 = Int(first)
                         }
                     }
                     else {
-                        if first.hasPrefix("-") {
-                            result.start.1 = Int(NSString(string: first).substring(from: 1))! * -1
+                        if first.hasPrefix("+") {
+                            result.start.1 = Int(NSString(string: first).substring(from: 1))!
                         }
                         else {
                             result.totalLines.1 = Int(first)

@@ -119,20 +119,34 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2CL-a2-OMK">
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hQv-6D-rRS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </tableView>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPJ-ga-aC5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="43.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XfR-um-0vF">
+                                                    <rect key="frame" x="187.5" y="0.0" width="187.5" height="43.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="2CL-a2-OMK" secondAttribute="bottom" id="7NB-qm-ewm"/>
-                                        <constraint firstItem="2CL-a2-OMK" firstAttribute="leading" secondItem="GLM-MO-fMU" secondAttribute="leading" id="LQX-i2-14Y"/>
-                                        <constraint firstAttribute="trailing" secondItem="2CL-a2-OMK" secondAttribute="trailing" id="Mow-L3-9an"/>
-                                        <constraint firstItem="2CL-a2-OMK" firstAttribute="top" secondItem="GLM-MO-fMU" secondAttribute="top" id="bbc-vM-aOI"/>
+                                        <constraint firstItem="hQv-6D-rRS" firstAttribute="top" secondItem="GLM-MO-fMU" secondAttribute="top" id="GlN-0j-iDZ"/>
+                                        <constraint firstItem="hQv-6D-rRS" firstAttribute="leading" secondItem="GLM-MO-fMU" secondAttribute="leading" id="hI7-m0-fQO"/>
+                                        <constraint firstAttribute="bottom" secondItem="hQv-6D-rRS" secondAttribute="bottom" id="jKH-hy-DBv"/>
+                                        <constraint firstAttribute="trailing" secondItem="hQv-6D-rRS" secondAttribute="trailing" id="pWt-N3-JJt"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="tableView" destination="2CL-a2-OMK" id="P5I-JQ-gMq"/>
+                                    <outlet property="leftLabel" destination="HPJ-ga-aC5" id="1jw-5f-XWI"/>
+                                    <outlet property="rightLabel" destination="XfR-um-0vF" id="DaK-j0-in2"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
