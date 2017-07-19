@@ -42,9 +42,9 @@ class GRPullRequestDetailViewController: UITableViewController {
         var sections = [Section]()
         files?.forEach {
             (file) in
-            sections.append(Section(header: HeaderFooter(title: file.fileName.1!), rows: [Row(identifier: GRCodeBlockCell.identifier, setUp: { (c) in
-                if let cell = c as? GRCodeBlockCell {
-                    cell.setUp(diff: file)
+            sections.append(Section(header: HeaderFooter(title: file.fileName.1!), rows: [Row(identifier: GRLineCompareCell.identifier, setUp: { (c) in
+                if let cell = c as? GRLineCompareCell {
+                    cell.setUp(file: file)
                 }
             })]))
         }

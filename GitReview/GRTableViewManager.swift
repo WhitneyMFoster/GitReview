@@ -23,6 +23,14 @@ class GRTableViewManager: NSObject, UITableViewDelegate, UITableViewDataSource {
     internal(set) var tableSettings: TableViewSettings = TableViewSettings(sections: [])
     weak var delegate: GRTableViewManagerDelegate? = nil
     
+    override init() {
+        
+    }
+    
+    init(settings: TableViewSettings) {
+        tableSettings = settings
+    }
+    
     func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
         let page = Int(scrollView.contentOffset.y / scrollView.frame.size.height)
         self.delegate?.userScrolled?(toPage: page)

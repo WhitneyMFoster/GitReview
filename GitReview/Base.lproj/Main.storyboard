@@ -103,7 +103,7 @@
             </objects>
             <point key="canvasLocation" x="1016.8" y="143.47826086956522"/>
         </scene>
-        <!--Pull Request Detail View Controller-->
+        <!--Changes-->
         <scene sceneID="l2T-oS-rqd">
             <objects>
                 <tableViewController id="VYt-YO-zz0" customClass="GRPullRequestDetailViewController" customModule="GitReview" customModuleProvider="target" sceneMemberID="viewController">
@@ -155,6 +155,11 @@
                             <outlet property="delegate" destination="VYt-YO-zz0" id="8aY-Jd-gGY"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Changes" id="3Du-X2-fKX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="cy1-PV-vlC">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFP-ag-iOI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

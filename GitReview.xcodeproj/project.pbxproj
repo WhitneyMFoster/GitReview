@@ -17,7 +17,7 @@
 		8175DF461F1C060B00A0358B /* GRExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF451F1C060B00A0358B /* GRExtensions.swift */; };
 		8175DF481F1C10D500A0358B /* GRPullRequestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF471F1C10D500A0358B /* GRPullRequestDetailViewController.swift */; };
 		8175DF4A1F1C1B5200A0358B /* GRCodeBlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175DF491F1C1B5200A0358B /* GRCodeBlockCell.swift */; };
-		81A6DDDD1F1C2D8700B201C3 /* GRCodeLineCompareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A6DDDC1F1C2D8700B201C3 /* GRCodeLineCompareCell.xib */; };
+		81A6DDDD1F1C2D8700B201C3 /* GRLineCompareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A6DDDC1F1C2D8700B201C3 /* GRLineCompareCell.xib */; };
 		81FDC47E1F173074003DD9B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FDC47D1F173074003DD9B6 /* AppDelegate.swift */; };
 		81FDC4831F173074003DD9B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FDC4811F173074003DD9B6 /* Main.storyboard */; };
 		81FDC4851F173074003DD9B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81FDC4841F173074003DD9B6 /* Assets.xcassets */; };
@@ -38,7 +38,7 @@
 		8175DF451F1C060B00A0358B /* GRExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRExtensions.swift; sourceTree = "<group>"; };
 		8175DF471F1C10D500A0358B /* GRPullRequestDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRPullRequestDetailViewController.swift; sourceTree = "<group>"; };
 		8175DF491F1C1B5200A0358B /* GRCodeBlockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRCodeBlockCell.swift; sourceTree = "<group>"; };
-		81A6DDDC1F1C2D8700B201C3 /* GRCodeLineCompareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GRCodeLineCompareCell.xib; sourceTree = "<group>"; };
+		81A6DDDC1F1C2D8700B201C3 /* GRLineCompareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GRLineCompareCell.xib; sourceTree = "<group>"; };
 		81FDC47A1F173074003DD9B6 /* GitReview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitReview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FDC47D1F173074003DD9B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81FDC4821F173074003DD9B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 				8175DF451F1C060B00A0358B /* GRExtensions.swift */,
 				8175DF471F1C10D500A0358B /* GRPullRequestDetailViewController.swift */,
 				8175DF491F1C1B5200A0358B /* GRCodeBlockCell.swift */,
-				81A6DDDC1F1C2D8700B201C3 /* GRCodeLineCompareCell.xib */,
+				81A6DDDC1F1C2D8700B201C3 /* GRLineCompareCell.xib */,
 			);
 			path = GitReview;
 			sourceTree = "<group>";
@@ -183,7 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81FDC4881F173074003DD9B6 /* LaunchScreen.storyboard in Resources */,
-				81A6DDDD1F1C2D8700B201C3 /* GRCodeLineCompareCell.xib in Resources */,
+				81A6DDDD1F1C2D8700B201C3 /* GRLineCompareCell.xib in Resources */,
 				81FDC4851F173074003DD9B6 /* Assets.xcassets in Resources */,
 				81FDC4831F173074003DD9B6 /* Main.storyboard in Resources */,
 			);

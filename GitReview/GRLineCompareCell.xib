@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="linesCell" id="Iug-Ip-XkB" customClass="GRCodeLineCompareCell" customModule="GitReview" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="linesCell" id="Iug-Ip-XkB" customClass="GRLineCompareCell" customModule="GitReview" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="Iug-Ip-XkB" id="UcG-e7-wlb">
@@ -20,22 +20,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ubv-vE-jHD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="50.5"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="123" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2p-sS-p2g">
-                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="51"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="txE-bv-AcT">
+                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="50.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="123" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdm-Rx-wK2">
-                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="51"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6H8-Cj-zVp">
+                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="50.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="toU-mI-414"/>
@@ -49,10 +45,6 @@
                     <constraint firstItem="ubv-vE-jHD" firstAttribute="top" secondItem="UcG-e7-wlb" secondAttribute="top" id="c78-6g-hKX"/>
                 </constraints>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="leftTextView" destination="d2p-sS-p2g" id="6VY-dg-E5R"/>
-                <outlet property="rightTextView" destination="fdm-Rx-wK2" id="r0q-O0-oax"/>
-            </connections>
             <point key="canvasLocation" x="53.5" y="90.5"/>
         </tableViewCell>
     </objects>
