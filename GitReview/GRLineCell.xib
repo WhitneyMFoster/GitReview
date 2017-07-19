@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="17A264c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="YNi-zU-eaX" customClass="GRLineCell" customModule="GitReview" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YNi-zU-eaX" id="kE2-A2-G0j">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="207-HV-t7g">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t49-5t-qwY">
+                                <rect key="frame" x="0.0" y="15" width="20" height="13.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="3tX-Ri-iEY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eex-bT-mOh">
+                                <rect key="frame" x="25" y="11.5" width="350" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="207-HV-t7g" firstAttribute="top" secondItem="kE2-A2-G0j" secondAttribute="top" id="COt-TH-gmJ"/>
+                    <constraint firstAttribute="bottom" secondItem="207-HV-t7g" secondAttribute="bottom" id="CSS-8q-dTB"/>
+                    <constraint firstItem="207-HV-t7g" firstAttribute="leading" secondItem="kE2-A2-G0j" secondAttribute="leading" id="Wo1-La-IlW"/>
+                    <constraint firstAttribute="trailing" secondItem="207-HV-t7g" secondAttribute="trailing" id="YX3-kT-2K8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lineContentLabel" destination="eex-bT-mOh" id="Gwz-VL-qlX"/>
+                <outlet property="lineNumberLabel" destination="t49-5t-qwY" id="Tr9-11-9YZ"/>
+                <outlet property="stackView" destination="207-HV-t7g" id="mAd-pQ-UHl"/>
+            </connections>
+            <point key="canvasLocation" x="76" y="104"/>
+        </tableViewCell>
+    </objects>
+</document>

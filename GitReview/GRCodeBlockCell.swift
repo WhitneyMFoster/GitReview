@@ -42,10 +42,10 @@ import UIKit
 //}
 
 class GRLineCompareCell: UITableViewCell {
-    static let identifier = "linesCell"
-    static let nibName = "GRLineCompareCell"
+    static let identifier = "compareCell"
+
     @IBOutlet weak var leftTableView: UITableView!
-    @IBOutlet weak var rightTextView: UITableView!
+    @IBOutlet weak var rightTableView: UITableView!
     private var tableManager: [GRTableViewManager] = [GRTableViewManager(), GRTableViewManager()]
     private var file: GRDiffFile? = nil
     var locked: Bool = true {
@@ -62,25 +62,35 @@ class GRLineCompareCell: UITableViewCell {
     }
         
     private func reloadTables() {
-        var i = 0
+        var sections: [[Section]] = [[], []]
         self.file?.blocks.forEach({ (block) in
-            var sections: [Section] = []
             var j = 0
-            while j < block.text.count && i < 2 {
+            while j < block.text.count && j < 2 {
+                var lineNumber = block.lineNumber[j].start ?? 0
+                let total = block.lineNumber[j].totalLines ?? 0
                 var rows: [Row] = []
                 block.text[j].forEach({ (line) in
-                    rows.append(Row(identifier: "todo", setUp: { (c) in
-                        // TODO
+                    rows.append(Row(identifier: GRLineCell.identifier, setUp: { (c) in
+                        if let cell = c as? GRLineCell {
+                            cell.setUp(line: lineNumber > total ? nil : lineNumber, text: line)
+                        }
                     }))
+                    lineNumber += 1
                 })
-                sections.append(Section(header: HeaderFooter(title: "---"), rows: rows))
+                sections[j].append(Section(header: HeaderFooter(title: "---"), rows: rows))
                 j += 1
             }
-            self.tableManager[i] = GRTableViewManager(settings: TableViewSettings(sections: sections))
-            i += 1
         })
+        for k in 0 ... 1 {
+            self.tableManager[k].tableSettings = TableViewSettings(sections: sections[k])
+        }
+        self.leftTableView.delegate = self.tableManager[0]
+        self.rightTableView.delegate = self.tableManager[1]
+        self.leftTableView.dataSource = self.tableManager[0]
+        self.rightTableView.dataSource = self.tableManager[1]
+
         self.leftTableView.reloadData()
-        self.rightTextView.reloadData()
+        self.rightTableView.reloadData()
     }
     
     
