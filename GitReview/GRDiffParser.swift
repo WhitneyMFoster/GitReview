@@ -71,7 +71,7 @@ struct GRFileChangeBlock {
                 let numbers = c.components(separatedBy: ",").map({
                     Int(NSString(string: $0).substring(from: ($0.hasPrefix("-") || $0.hasPrefix("+")) ? 1 : 0))
                 })
-                result.append((numbers.isEmpty ? nil : numbers[0], numbers.count < 1 ? nil : numbers[1]))
+                result.append((numbers.isEmpty ? nil : numbers[0], numbers.count < 2 ? nil : numbers[1]))
             }
         }
         

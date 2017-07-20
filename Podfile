@@ -3,6 +3,7 @@ def install_pods
     pod 'Alamofire'
     pod 'SwiftyJSON'
     pod 'Kingfisher'
+    pod 'SVProgressHUD'
 end
 
 ###

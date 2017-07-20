@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SVProgressHUD
 
 class GRPullRequestDetailViewController: UITableViewController {
     var pullRequestNumber: Int?
@@ -15,6 +16,7 @@ class GRPullRequestDetailViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.leftBarButtonItem = nil
         
         self.tableView.delegate = tableManager
         self.tableView.dataSource = tableManager
@@ -52,7 +54,12 @@ class GRPullRequestDetailViewController: UITableViewController {
         tableManager.tableSettings = TableViewSettings(sections: sections)
         self.tableView.reloadData()
         DispatchQueue.main.async(execute: { [weak self] () -> Void in
+            SVProgressHUD.dismiss()
             self?.refreshControl?.endRefreshing()
         })
+    }
+    
+    @IBAction func xButtonTapped() {
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
 }

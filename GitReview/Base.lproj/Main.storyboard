@@ -96,7 +96,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <segue destination="VYt-YO-zz0" kind="show" identifier="detail" id="n5b-e8-WFp"/>
+                        <segue destination="cIV-I0-Xc1" kind="presentation" identifier="detail" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="n5b-e8-WFp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="phV-cD-Fpi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -158,12 +158,29 @@
                     <navigationItem key="navigationItem" title="Changes" id="3Du-X2-fKX">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="cy1-PV-vlC">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="xButtonTapped" destination="VYt-YO-zz0" id="kE6-Qj-OYU"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="mLK-GC-aoM">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Loading...">
+                                <attributes>
+                                    <font key="NSFont" metaFont="smallSystem"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <connections>
+                            <action selector="loadPullRequest" destination="VYt-YO-zz0" eventType="valueChanged" id="qHE-Bx-Xt4"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFP-ag-iOI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1916" y="143"/>
+            <point key="canvasLocation" x="2855.1999999999998" y="142.57871064467767"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PT3-Ca-kJc">
@@ -185,6 +202,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RII-2O-KIn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="77.599999999999994" y="143.47826086956522"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zQp-60-Ylz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsWhenVerticallyCompact="YES" id="cIV-I0-Xc1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="MYX-Wv-kvh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VYt-YO-zz0" kind="relationship" relationship="rootViewController" id="7kZ-El-y1Z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zPR-bM-rBn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1916" y="142.57871064467767"/>
         </scene>
     </scenes>
 </document>

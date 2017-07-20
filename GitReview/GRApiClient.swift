@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import SVProgressHUD
 
 class GRApiClient {
     static let shared = GRApiClient()
@@ -48,10 +49,12 @@ class GRApiClient {
     }
     
     private func makeApiCall(method: HTTPMethod, endpoint: EndpointString, parameters: [String: Any]?, encoding: ParameterEncoding = JSONEncoding.default, success: @escaping (JSON) -> Void, failure: @escaping (NSError) -> Void) {
+        SVProgressHUD.show(withStatus: "Loading...")
         self.sessionManager.request("\(baseURL)\(endpoint.value)", method: method, parameters: parameters, encoding: encoding, headers: nil).responseJSON { (response) in
             if response.result.isFailure || response.result.error != nil {
                 let errorMessage = response.result.error?.localizedDescription ?? response.error?.localizedDescription ?? response.result.error?.localizedDescription ?? "Something went wrong"
                 failure(NSError.create(message: errorMessage))
+                SVProgressHUD.showError(withStatus: errorMessage)
             }
             else if let value = response.result.value {
                 let json = JSON(value)
@@ -59,21 +62,25 @@ class GRApiClient {
             }
             else {
                 failure(NSError.create(message: "Nothing was returned"))
+                SVProgressHUD.showError(withStatus: "Nothing was returned")
             }
         }
     }
     
     private func makeCall(method: HTTPMethod, endpoint: EndpointString, parameters: [String: Any]?, encoding: ParameterEncoding = JSONEncoding.default, success: @escaping (String) -> Void, failure: @escaping (NSError) -> Void) {
+        SVProgressHUD.show(withStatus: "Loading...")
         self.sessionManager.request("\(diffURL)\(endpoint.value)", method: method, parameters: parameters, encoding: encoding, headers: nil).responseString { (response) in
             if response.result.isFailure || response.result.error != nil {
                 let errorMessage = response.result.error?.localizedDescription ?? response.error?.localizedDescription ?? response.result.error?.localizedDescription ?? "Something went wrong"
                 failure(NSError.create(message: errorMessage))
+                SVProgressHUD.showError(withStatus: errorMessage)
             }
             else if let value = response.result.value {
                 success(value)
             }
             else {
                 failure(NSError.create(message: "Nothing was returned"))
+                SVProgressHUD.showError(withStatus: "Nothing was returned")
             }
         }
     }

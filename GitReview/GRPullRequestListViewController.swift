@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SVProgressHUD
 
 class GRPullRequestListViewController: UITableViewController {
     let tableManager: GRTableViewManager = GRTableViewManager()
@@ -45,6 +46,7 @@ class GRPullRequestListViewController: UITableViewController {
         tableManager.tableSettings = TableViewSettings(sections: [Section(rows: rows)])
         self.tableView.reloadData()
         DispatchQueue.main.async(execute: { [weak self] () -> Void in
+            SVProgressHUD.dismiss()
             self?.refreshControl?.endRefreshing()
         })
     }
@@ -58,7 +60,7 @@ class GRPullRequestListViewController: UITableViewController {
         
         switch id {
             case "detail":
-                let detailVC = segue.destination as? GRPullRequestDetailViewController
+                let detailVC = (segue.destination as? UINavigationController)?.viewControllers.first as? GRPullRequestDetailViewController
                 detailVC?.pullRequestNumber = self.selectedPr
                 self.selectedPr = nil
             break
