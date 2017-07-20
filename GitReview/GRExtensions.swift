@@ -83,7 +83,7 @@ extension NSMutableAttributedString {
     }
     
     static func lineOfFile(line: String) -> (NSMutableAttributedString, UIColor) {
-        let line = line.isEmpty ? "\n" : line
+        let line = line.isEmpty ? "\n" : "\(line)\n"
         let backgroundColor = line.hasPrefix("-") ? UIColor.red : (line.hasPrefix("+") ? UIColor.green : UIColor.white)
         let paragraph = NSMutableParagraphStyle()
         paragraph.addTabStop(NSTextTab(textAlignment: .left, location: 100, options: [:]))

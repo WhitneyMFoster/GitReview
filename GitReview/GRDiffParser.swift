@@ -19,75 +19,63 @@ func parseDiff(fileContents diff: String) throws -> [GRDiffFile] {
 }
 
 struct GRDiffFile {
-    let fileName: (String?, String?)
-    let newFile: Bool
+    private(set) var fileName: [String?] = []
     private(set) var blocks: [GRFileChangeBlock] = []
     
     init(_ file: String) {
         var diffLines = file.components(separatedBy: "\n")
         
-        let header = diffLines.removeFirst().components(separatedBy: " ").filter({ $0 != "diff" && $0 != "--git" }).filter({ $0.isEmpty == false })
-        self.fileName = (header.first, header.last)
-        
-        self.newFile = diffLines.first?.contains("new file") ?? false
-        
-        while !(diffLines.first?.hasPrefix("@@") ?? true) {
-            let _ = diffLines.removeFirst()
-        }
-        
-        if diffLines.count > 0 {
-            var currentLineNumber = getlineNumbers(diffLines.removeFirst())
-            var lineCompare: [[String]] = [[], []]
-            for line in diffLines {
-                let currentLine = "\(line)\n"
-                if currentLine.hasPrefix("@@") {
+        var currentLineNumber: [(start: Int?, totalLines: Int?)] = []
+        var lineCompare: [[String]] = [[], []]
+        while diffLines.isEmpty == false {
+            let current = diffLines.removeFirst()
+            if (current.hasPrefix("---") || current.hasPrefix("+++")) && current.characters.count > 4 {
+                self.fileName.append(NSString(string: current).substring(from: 4))
+            }
+            else if current.hasPrefix("@@") {
+                if currentLineNumber.isEmpty == false {
                     blocks.append(GRFileChangeBlock(lineNumber: currentLineNumber, text: lineCompare))
-                    lineCompare = []
-                    currentLineNumber = getlineNumbers(currentLine)
                 }
-                else {
-                    if !currentLine.hasPrefix("+") {
-                        lineCompare[0].append(currentLine)
-                    }
-                    if !currentLine.hasPrefix("-") {
-                        lineCompare[1].append(currentLine)
-                    }
+                lineCompare = [[], []]
+                currentLineNumber = GRFileChangeBlock.getlineNumbers(current)
+            }
+            else if currentLineNumber.isEmpty == false {
+                if !current.hasPrefix("+") {
+                    lineCompare[0].append(current)
+                }
+                if !current.hasPrefix("-") {
+                    lineCompare[1].append(current)
                 }
             }
-            blocks.append(GRFileChangeBlock(lineNumber: currentLineNumber, text: lineCompare))
         }
+        blocks.append(GRFileChangeBlock(lineNumber: currentLineNumber, text: lineCompare))
+        
     }
     
-    private func getlineNumbers(_ str: String) -> [(start: Int?, totalLines: Int?)] {
-        var components = str.components(separatedBy: CharacterSet(charactersIn: " "))
-        var lineNumbers = [String]()
-        while lineNumbers.count < 4 && components.isEmpty == false {
-            lineNumbers.append(components.removeFirst())
-        }
-        var result: [(start: Int?, totalLines: Int?)] = []
-        let lines = lineNumbers.filter({ $0.hasPrefix("@@") == false })
-        for i in 0 ..< lines.count {
-            var split = lines[i].components(separatedBy: ",")
-            while split.count > 0 {
-                if let first = split.first {
-                    let _ = split.removeFirst()
-                    if first.hasPrefix("-") || first.hasPrefix("+") {
-                        result[i] = (Int(NSString(string: first).substring(from: 1)), nil)
-                    }
-                    else {
-                        result[i] = (result[0].start, Int(first))
-                    }
-                }
-            }
-
-        }
-        
-        return result
-        
-    }
+    
 }
 
 struct GRFileChangeBlock {
     let lineNumber: [(start: Int?, totalLines: Int?)]
     let text: [[String]]
+    
+    fileprivate static func getlineNumbers(_ str: String) -> [(start: Int?, totalLines: Int?)] {
+        var result: [(start: Int?, totalLines: Int?)] = []
+        for c in str.components(separatedBy: CharacterSet(charactersIn: " ")) {
+            if c.hasPrefix("@@") {
+                if result.isEmpty == false {
+                    break
+                }
+            }
+            else {
+                let numbers = c.components(separatedBy: ",").map({
+                    Int(NSString(string: $0).substring(from: ($0.hasPrefix("-") || $0.hasPrefix("+")) ? 1 : 0))
+                })
+                result.append((numbers.isEmpty ? nil : numbers[0], numbers.count < 1 ? nil : numbers[1]))
+            }
+        }
+        
+        return result
+        
+    }
 }
